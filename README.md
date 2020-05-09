@@ -23,7 +23,7 @@ To read a PEP in your console, use the `pep` command line command:
 
     $ pep 8
 
-You can use `pep --help` to see available options.
+Use `pep --help` to see available options.
 
 You can also call PepDocs from your own scripts. In that case, use `pepdocs.get()`:
 
