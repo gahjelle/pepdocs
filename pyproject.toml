@@ -1,0 +1,59 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+
+[tool.flit.metadata]
+module             = "pepdocs"
+author             = "Geir Arne Hjelle"
+author-email       = "geirarne@gmail.com"
+home-page          = "https://github.com/gahjelle/pepdocs"
+description-file   = "README.md"
+classifiers        = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Documentation",
+    "Topic :: Software Development :: Documentation",
+]
+keywords           = "pep"
+
+# Requirements
+requires-python    = ">=3.6"
+requires           = [
+    "importlib_resources; python_version < '3.7'",
+    "pyconfs[toml]",
+    "requests",
+    "typer",
+]
+
+
+[tool.flit.scripts]
+pep = "pepdocs.__main__:main"
+pepdocs = "pepdocs.__main__:main"
+
+
+[tool.flit.metadata.requires-extra]
+dev                = ["black", "bumpversion", "flake8", "flit", "interrogate", "isort", "mypy", "pre-commit"]
+doc                = ["mkdocs"]
+test               = ["black", "flake8", "interrogate", "isort", "mypy", "pytest", "pytest-cov", "tox"]
+
+
+[tool.interrogate]
+ignore-init-method = false
+ignore-init-module = false
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-module = false
+fail-under = 100
+verbose = 0
