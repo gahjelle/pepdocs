@@ -15,14 +15,12 @@ Current maintainers:
 Version: v0.1.1
 """
 
-# Standard library imports
-import builtins
-
 # Third party imports
 import typer
 
 # PepDocs imports
 import pepdocs
+from pepdocs.config import pepdocs as CFG
 
 
 def main() -> None:
@@ -32,15 +30,26 @@ def main() -> None:
 
 
 def get_pep_cli(
-    pep_number: int,
-    cache: bool = typer.Option(True, help="Read from cache if it's already downloaded"),
+    pep_number: int = typer.Argument(20),
     print: bool = typer.Option(True, help="Print PEP to console"),
+    cache: bool = typer.Option(
+        True, help="Read PEP from cache if it's already downloaded"
+    ),
+    show_cache_location: bool = typer.Option(
+        False, "--locate-cache", help="Show location of cache"
+    ),
 ) -> None:
     """Get one PEP and print it to the console"""
+    if show_cache_location:
+        cache_dir = CFG.path.replace("cache", pep_number=0, converter="path").parent
+        typer.secho(str(cache_dir), fg=typer.colors.GREEN)
+        raise typer.Exit()
+
     try:
         pep_text = pepdocs.get(pep_number, use_cache=cache)
     except FileNotFoundError as err:
-        raise SystemExit(err)
+        typer.secho(str(err), fg=typer.colors.RED)
+        raise typer.Abort()
 
     if print:
-        builtins.print(pep_text)
+        typer.echo(pep_text)
