@@ -2,7 +2,7 @@
 
 _Read PEPs in your console_
 
-[![v0.1.1](https://img.shields.io/pypi/v/pepdocs.svg)](https://pypi.org/project/pepdocs/)
+[![v0.1.2](https://img.shields.io/pypi/v/pepdocs.svg)](https://pypi.org/project/pepdocs/)
 [![Python versions](https://img.shields.io/pypi/pyversions/pepdocs.svg)](https://pypi.org/project/pepdocs/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
