@@ -27,7 +27,6 @@ def download_pep(pep_number: int, use_cache: bool = True) -> pathlib.Path:
     # Download PEP from available URLs
     for format in CFG.url.pep.entry_keys:
         pep_url = CFG.url.pep.replace(format, pep_number=pep_number)
-        print(f"Downloading {pep_url}")
         pep_request = requests.get(pep_url)
 
         if pep_request:
