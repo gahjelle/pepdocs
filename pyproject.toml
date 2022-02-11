@@ -1,15 +1,15 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
+requires      = ["flit_core >=2,<4"]
 build-backend = "flit_core.buildapi"
 
 
 [tool.flit.metadata]
-module             = "pepdocs"
-author             = "Geir Arne Hjelle"
-author-email       = "geirarne@gmail.com"
-home-page          = "https://github.com/gahjelle/pepdocs"
-description-file   = "README.md"
-classifiers        = [
+module = "pepdocs"
+author = "Geir Arne Hjelle"
+author-email = "geirarne@gmail.com"
+home-page = "https://github.com/gahjelle/pepdocs"
+description-file = "README.md"
+classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Environment :: Console",
     "Intended Audience :: Developers",
@@ -18,42 +18,62 @@ classifiers        = [
     "Operating System :: MacOS",
     "Operating System :: Microsoft",
     "Operating System :: POSIX :: Linux",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Topic :: Documentation",
     "Topic :: Software Development :: Documentation",
 ]
-keywords           = "pep"
+keywords = "pep"
 
 # Requirements
-requires-python    = ">=3.6"
-requires           = [
-    "importlib_resources; python_version < '3.7'",
-    "pyconfs[toml]",
-    "requests",
-    "typer",
-]
+requires-python = ">=3.8"
+requires        = ["pyconfs[toml]", "requests", "rst-to-myst", "typer"]
 
 
 [tool.flit.scripts]
-pep = "pepdocs.__main__:main"
+pep     = "pepdocs.__main__:main"
 pepdocs = "pepdocs.__main__:main"
 
 
 [tool.flit.metadata.requires-extra]
-dev                = ["black", "bumpversion", "flake8", "flit", "interrogate", "isort", "mypy", "pre-commit"]
-doc                = ["mkdocs"]
-test               = ["black", "flake8", "interrogate", "isort", "mypy", "pytest", "pytest-cov", "tox"]
+dev = [
+    "black",
+    "bumpversion",
+    "flake8",
+    "flit",
+    "interrogate",
+    "isort",
+    "mypy",
+    "pre-commit",
+]
+doc = ["mkdocs"]
+test = [
+    "black",
+    "flake8",
+    "interrogate",
+    "isort",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+    "tox",
+]
+
+
+[tool.isort]
+multi_line_output         = 3
+profile                   = "black"
+import_heading_stdlib     = "Standard library imports"
+import_heading_thirdparty = "Third party imports"
+import_heading_firstparty = "PepDocs imports"
 
 
 [tool.interrogate]
 ignore-init-method = false
 ignore-init-module = false
-ignore-magic = false
+ignore-magic       = false
 ignore-semiprivate = false
-ignore-private = false
-ignore-module = false
-fail-under = 100
-verbose = 0
+ignore-private     = false
+ignore-module      = false
+fail-under         = 100
+verbose            = 0

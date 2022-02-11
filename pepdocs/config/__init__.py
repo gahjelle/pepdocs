@@ -1,13 +1,10 @@
 """Handle configuration settings in PepDocs"""
 
+# Standard library imports
+from importlib import resources
+
 # Third party imports
 from pyconfs import Configuration
-
-# Import resources, be compatible with Python 3.6
-try:
-    from importlib import resources
-except ImportError:
-    import importlib_resources as resources
 
 
 def read_config(cfg_file: str) -> Configuration:

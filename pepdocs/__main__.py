@@ -30,10 +30,13 @@ def main() -> None:
 
 
 def get_pep_cli(
-    pep_number: int = typer.Argument(20),
+    pep_number: int,
     print: bool = typer.Option(True, help="Print PEP to console"),
     cache: bool = typer.Option(
         True, help="Read PEP from cache if it's already downloaded"
+    ),
+    markdown: bool = typer.Option(
+        False, "--markdown", "-m", help="Convert PEP to Markdown"
     ),
     show_cache_location: bool = typer.Option(
         False, "--locate-cache", help="Show location of cache"
@@ -46,10 +49,10 @@ def get_pep_cli(
         raise typer.Exit()
 
     try:
-        pep_text = pepdocs.get(pep_number, use_cache=cache)
+        pep_text = pepdocs.get(pep_number, use_cache=cache, as_markdown=markdown)
     except FileNotFoundError as err:
         typer.secho(str(err), fg=typer.colors.RED)
-        raise typer.Abort()
+        raise typer.Abort() from err
 
     if print:
         typer.echo(pep_text)
