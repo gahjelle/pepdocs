@@ -7,7 +7,7 @@ Current maintainers:
 
 {maintainers}
 
-Version: v0.1.2
+Version: v0.2.0
 """
 
 # Standard library imports
@@ -20,7 +20,7 @@ from pepdocs._pepdocs import get  # noqa
 # Version of PepDocs
 #
 # This is automatically set using the bumpversion tool
-__version__ = "0.1.2"
+__version__ = "0.2.0"
 
 
 # Homepage for PepDocs
