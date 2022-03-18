@@ -12,7 +12,7 @@ Current maintainers:
 \b
 {maintainers}
 
-Version: v0.2.0
+Version: v0.3.0
 """
 
 # Third party imports
