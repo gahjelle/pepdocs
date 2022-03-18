@@ -30,7 +30,7 @@ def main() -> None:
 
 
 def get_pep_cli(
-    pep_number: int,
+    pep_numbers: list[int],
     print: bool = typer.Option(True, help="Print PEP to console"),
     cache: bool = typer.Option(
         True, help="Read PEP from cache if it's already downloaded"
@@ -51,14 +51,13 @@ def get_pep_cli(
         typer.secho(str(cache_dir), fg=typer.colors.GREEN)
         raise typer.Exit()
 
-    if browser:
-        pepdocs.open_browser(pep_number)
-
-    try:
-        pep_text = pepdocs.get(pep_number, use_cache=cache, as_markdown=markdown)
-    except FileNotFoundError as err:
-        typer.secho(str(err), fg=typer.colors.RED)
-        raise typer.Abort() from err
-
-    if print:
-        typer.echo(pep_text)
+    for pep_number in pep_numbers:
+        try:
+            pep_text = pepdocs.get(pep_number, use_cache=cache, as_markdown=markdown)
+        except FileNotFoundError as err:
+            typer.secho(str(err), fg=typer.colors.RED)
+        else:
+            if browser:
+                pepdocs.open_browser(pep_number)
+            elif print:
+                typer.echo(pep_text)
