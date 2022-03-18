@@ -41,6 +41,7 @@ def get_pep_cli(
     browser: bool = typer.Option(
         False, "--web-browser", "-w", help="Open PEP in web browser"
     ),
+    save: bool = typer.Option(False, "--save-to-file", "-s", help="Save PEP to file"),
     show_cache_location: bool = typer.Option(
         False, "--locate-cache", help="Show location of cache"
     ),
@@ -59,5 +60,13 @@ def get_pep_cli(
         else:
             if browser:
                 pepdocs.open_browser(pep_number)
+            elif save:
+                path = CFG.path.save.replace(
+                    "markdown" if markdown else "rst",
+                    pep_number=pep_number,
+                    converter="path",
+                )
+                path.write_text(pep_text)
+                typer.secho(f"Wrote to {path}", fg=typer.colors.GREEN)
             elif print:
                 typer.echo(pep_text)
