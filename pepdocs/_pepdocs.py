@@ -3,6 +3,7 @@
 # Standard library imports
 import pathlib
 import re
+import webbrowser
 
 # Third party imports
 import requests
@@ -16,6 +17,12 @@ def get(pep_number: int, use_cache: bool = True, as_markdown: bool = False) -> s
     """Get the text of one PEP"""
     pep_rst = download_pep(pep_number, use_cache=use_cache).read_text()
     return convert_to_markdown(pep_rst) if as_markdown else pep_rst
+
+
+def open_browser(pep_number: int) -> None:
+    """Open the PEP in the default web browser"""
+    pep_url = CFG.url.replace("pep_web", pep_number=pep_number)
+    webbrowser.open_new_tab(pep_url)
 
 
 def download_pep(pep_number: int, use_cache: bool = True) -> pathlib.Path:

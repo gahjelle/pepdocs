@@ -15,7 +15,7 @@ from collections import namedtuple as _namedtuple
 from datetime import date as _date
 
 # PepDocs imports
-from pepdocs._pepdocs import get  # noqa
+from pepdocs._pepdocs import get, open_browser  # noqa
 
 # Version of PepDocs
 #

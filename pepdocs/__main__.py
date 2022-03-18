@@ -38,6 +38,9 @@ def get_pep_cli(
     markdown: bool = typer.Option(
         False, "--markdown", "-m", help="Convert PEP to Markdown"
     ),
+    browser: bool = typer.Option(
+        False, "--web-browser", "-w", help="Open PEP in web browser"
+    ),
     show_cache_location: bool = typer.Option(
         False, "--locate-cache", help="Show location of cache"
     ),
@@ -47,6 +50,9 @@ def get_pep_cli(
         cache_dir = CFG.path.replace("cache", pep_number=0, converter="path").parent
         typer.secho(str(cache_dir), fg=typer.colors.GREEN)
         raise typer.Exit()
+
+    if browser:
+        pepdocs.open_browser(pep_number)
 
     try:
         pep_text = pepdocs.get(pep_number, use_cache=cache, as_markdown=markdown)
